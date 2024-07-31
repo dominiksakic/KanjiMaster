@@ -25,13 +25,30 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
     }
 
-    public void StartGameThread(){
+    public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
     }
 
     @Override
     public void run() {
+        while(gameThread != null){
+        // Update information such as character positio
+            update();
+        // draw the screen
+            repaint();
+        }
+    }
 
+    public void update(){
+
+    }
+
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.white);
+        g2.fillRect(100, 100, tileSize, tileSize);
+        g2.dispose();//to save some memory
     }
 }
