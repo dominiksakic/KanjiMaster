@@ -25,6 +25,11 @@ public class GamePanel extends JPanel implements Runnable{
     int playerY = 100;
     int playerSpeed = 4;
 
+    //set player2 position
+    int player2X = 110;
+    int player2Y = 110;
+    int player2Speed = 10;
+
     public GamePanel(){
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -75,13 +80,30 @@ public class GamePanel extends JPanel implements Runnable{
         }else if(keyH.rightPressed) {
             playerX += playerSpeed;
         }
+
+        if(keyH.arrowUp == true){
+            player2Y -= player2Speed;
+        }else if(keyH.arrowDown) {
+            player2Y += player2Speed;
+        }else if(keyH.arrowLeft) {
+            player2X -= player2Speed;
+        }else if(keyH.arrowRight) {
+            player2X += player2Speed;
+        }
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
         g2.setColor(Color.white);
         g2.fillRect(playerX, playerY, tileSize, tileSize);
+
+        g2.setColor(Color.red);
+        g2.fillRect(player2X, player2Y, tileSize,tileSize);
+
+
         g2.dispose();//to save some memory
+
     }
 }
